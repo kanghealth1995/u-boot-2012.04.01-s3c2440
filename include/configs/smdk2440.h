@@ -114,6 +114,7 @@
 #define CONFIG_SYS_HUSH_PARSER
 #define CONFIG_SYS_PROMPT_HUSH_PS2	"> "
 #define CONFIG_CMDLINE_EDITING
+#define CONFIG_AUTO_COMPLETE     /* Tab 琛ュ叏 */
 
 /* autoboot */
 #define CONFIG_BOOTDELAY	5
@@ -122,8 +123,8 @@
 #define CONFIG_ZERO_BOOTDELAY_CHECK
 
 #define CONFIG_NETMASK		255.255.255.0
-#define CONFIG_IPADDR		192.168.1.17
-#define CONFIG_SERVERIP		192.168.1.3
+#define CONFIG_IPADDR		192.168.8.200
+#define CONFIG_SERVERIP		192.168.8.100
 #define CONFIG_ETHADDR      00:0c:29:4d:e4:f4
 
 #if defined(CONFIG_CMD_KGDB)
@@ -136,7 +137,7 @@
  * Miscellaneous configurable options
  */
 #define CONFIG_SYS_LONGHELP		/* undef to save memory */
-#define CONFIG_SYS_PROMPT	"SMDK2410 # "
+#define CONFIG_SYS_PROMPT	"UBoot # "
 #define CONFIG_SYS_CBSIZE	256
 /* Print Buffer Size */
 #define CONFIG_SYS_PBSIZE	(CONFIG_SYS_CBSIZE + \
@@ -164,7 +165,7 @@
 #define CONFIG_CMD_NAND_YAFFS
 
 #define CONFIG_BOOTARGS "console=ttySAC0 root=/dev/mtdblock3"
-#define CONFIG_BOOTCOMMAND "nand read 30000000 kernel;bootm 30000000"
+#define CONFIG_BOOTCOMMAND "nand read 0x30000000 kernel;bootm 0x30000000"
 
 /*-----------------------------------------------------------------------
  * Stack sizes
@@ -216,11 +217,12 @@
 
 #define CONFIG_CMD_MTDPARTS
 #define CONFIG_MTD_DEVICE
-#define MTDIDS_DEFAULT		"nand0=jz2440-0"  /* 哪一个设备 */
-#define MTDPARTS_DEFAULT	"mtdparts=jz2440-0:256k(u-boot),"	\
+#define MTDIDS_DEFAULT		"nand0=nand" 
+#define MTDPARTS_DEFAULT	"mtdparts=nand:256k(u-boot),"	\
 						"128k(params),"		\
-						"2m(kernel),"	\
-						"-(rootfs)"		\
+						"2m(kernel),"		\
+						"10m(rootfs),"		\
+						"-(app)"			\
 
 
 /*
