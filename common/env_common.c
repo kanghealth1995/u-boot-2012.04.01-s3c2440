@@ -119,9 +119,6 @@ const uchar default_environment[] = {
 #ifdef	CONFIG_EXTRA_ENV_SETTINGS
 	CONFIG_EXTRA_ENV_SETTINGS
 #endif
-	"bubt=" "tftp 0x30000000 u-boot.bin;nand erase.part u-boot;nand write 0x30000000 u-boot" "\0"
-	"kernel=" "tftp 0x30000000 uImage;nand erase.part kernel;nand write 0x30000000 kernel" "\0"
-	"rootfs=" "tftp 0x30000000 rootfs.yaffs2;nand erase.part rootfs;nand write 0x30000000 rootfs" "\0"
 	"\0"
 };
 

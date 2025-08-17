@@ -220,8 +220,8 @@
 #define MTDIDS_DEFAULT		"nand0=nand" 
 #define MTDPARTS_DEFAULT	"mtdparts=nand:256k(u-boot),"	\
 						"128k(params),"		\
-						"2m(kernel),"		\
-						"10m(rootfs),"		\
+						"8m(kernel),"		\
+						"32m(rootfs),"		\
 						"-(app)"			\
 
 
@@ -271,5 +271,13 @@
 				GENERATED_GBL_DATA_SIZE)
 
 #define CONFIG_BOARD_EARLY_INIT_F
+
+#define CONFIG_EXTRA_ENV_SETTINGS																	\
+	"du=tftp 0x30000000 u-boot.bin;nand erase.part u-boot;nand write 0x30000000 u-boot $filesize\0"			\
+	"dk=tftp 0x30000000 uImage;nand erase.part kernel;nand write 0x30000000 kernel $filesize\0"				\
+	"dr=tftp 0x30000000 rootfs.yaffs2;nand erase.part rootfs;nand write.yaffs 0x30000000 rootfs $filesize\0"		\
+	"bootargs=noinitrd root=/dev/mtdblock3 init=/linuxrc console=ttySAC0,115200\0"					\
+	"machid=16a\0"																					\
+	""
 
 #endif /* __CONFIG_H */
